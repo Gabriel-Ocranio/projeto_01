@@ -40,7 +40,8 @@ import random
 def cadastrar_usuario():
     print("_________CADASTRO DE USUARIO_________")
     print('')
-    print('Formato CPF: XXXXXXXXXXX')
+    print('Informe os 11 números do CPF!')
+    print('EXEMPLO: 13507973604')
 
     while True:
         cpf = input('Entre o CPF: ')
@@ -203,7 +204,7 @@ def atualizar_cadastro():
         "*  informações atualizadas.             *\n"
         "****************************************"
         )
-        print(aviso)
+        print(aviso) 
         while True:
             print('Formato nome: JOSE XXXXXX DA XXXXX SILVA')
             nome = input('Entre o novo nome de usuário: ')
