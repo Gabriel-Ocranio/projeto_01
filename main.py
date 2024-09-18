@@ -30,7 +30,8 @@ def listar_usuarios():
         print(f'Código: {usuario.codigo}')
         print(f'Nome: {usuario.nome}')
         print(f'Curso: {usuario.curso}')
-        print(f'Fichas disponíveis: {usuario.fichas}')
+        print(f'Fichas disponíveis para almoco: {usuario.fichas_almoco}')
+        print(f'Fichas disponíveis para janta: {usuario.fichas_janta}')
         print('')
 
 # CADASTRAR USUÁRIO
