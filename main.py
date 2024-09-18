@@ -11,7 +11,8 @@ class Usuario():
         self.codigo = codigo
         self.nome = nome
         self.curso = curso
-        self.fichas = 0
+        self.fichas_almoco = 0
+        self.fichas_janta = 0
         
 
 
@@ -113,6 +114,7 @@ def comprar_ficha():
     print('_________COMPRAR FICHA________')
     cpf = input('Entre o CPF do usuário: ')
     limpe()
+    
     if cpf in usuarios:
         while True:
             try:
@@ -125,16 +127,30 @@ def comprar_ficha():
             except ValueError:
                 print("Entrada inválida! Por favor, insira um número inteiro.")
         
-        usuarios[cpf].fichas += quantidade  
-        
         print('Entre a opção: ALMOÇO [1]   JANTAR [2]  VOLTAR [0]')
         op = input()
         limpe()
         
         if op == '1':
             preco = 3.50
+            # Adiciona as fichas de almoço
+            usuarios[cpf].fichas_almoco += quantidade  
+            
+            # Verifica bonificação de almoço
+            if quantidade >= 5:
+                usuarios[cpf].fichas_almoco += 1  # Adiciona uma ficha de almoço grátis
+                print('Parabéns! Você ganhou 1 ficha de almoço grátis!')
+
         elif op == '2':
             preco = 3.00
+            # Adiciona as fichas de jantar
+            usuarios[cpf].fichas_janta += quantidade  
+
+            # Verifica bonificação de jantar
+            if quantidade >= 7:
+                usuarios[cpf].fichas_janta += 1  # Adiciona uma ficha de jantar grátis
+                print('Parabéns! Você ganhou 1 ficha de jantar grátis!')
+
         elif op == '0':
             return  # Retorna ao menu anterior ou encerra
         else:
@@ -147,7 +163,8 @@ def comprar_ficha():
         print(f'TOTAL A SER PAGO: R$ {quantidade * preco:.2f}')
         print('==============================')
         print(f'Ficha(s) comprada(s) com sucesso para {usuarios[cpf].nome}!')
-        print(f'Agora {usuarios[cpf].nome} possui {usuarios[cpf].fichas} ficha(s).')
+        print(f'Agora {usuarios[cpf].nome} possui {usuarios[cpf].fichas_almoco} ficha(s) de almoço e {usuarios[cpf].fichas_janta} ficha(s) de jantar.')
+        
         while True:
             print('ENCERRAR [0]      Menu principal [1]')
             op = input()
@@ -160,7 +177,8 @@ def comprar_ficha():
                 print('Entre um valor válido!')
     else:
         print('Usuário não encontrado')
-        
+
+
 
 # Limpar a tela
 def limpe():
